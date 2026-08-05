@@ -25,7 +25,7 @@ This repo runs on Ruby 3.0 via mkxp-z, but the code is two eras layered together
 `Data/Scripts.rxdata` is gitignored/a stub — it is generated from the individual `.rb` files under `Data/Scripts/`, never the other way around. `scripts_extract.rb`/`scripts_combine.rb` exist only for round-tripping through the raw RPG Maker XP editor; don't run them as part of a normal edit. If you're tempted to open `.rxdata` in an editor, stop — find the source `.rb` file instead (it has the same folder/number in its path as the feature area).
 
 ## GameData::* Pattern
-Every typed data class (`Species`, `Move`, `Item`, `Ability`, `Trainer`, ...) mixes in `GameData::ClassMethods` (`Data/Scripts/010_Data/001_GameData.rb`), giving a uniform interface backed by a class constant `DATA` hash:
+Every typed data class (`Species`, `Move`, `Item`, `Ability`, `Trainer`, ...) mixes in one of three sibling modules in `Data/Scripts/010_Data/001_GameData.rb` — `ClassMethodsSymbols` (symbol-keyed; what Species/Move/Item/Ability/Trainer/... actually extend), `ClassMethodsIDNumbers` (integer-keyed, e.g. `TownMap`, `Metadata`), or the base `ClassMethods` (used only by `Weather`/`TerrainTag`) — each giving the same uniform interface backed by a class constant `DATA` hash:
 
 ```ruby
 GameData::Species.get(:PIKACHU)       # raises if missing

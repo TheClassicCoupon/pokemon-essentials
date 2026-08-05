@@ -22,6 +22,9 @@ RGSS*.dll
 .idea/
 *.mkproj
 
+# Local (personal) hookify rules — not shared via the repo
+.claude/*.local.md
+
 # Operating system generated files & folders
 .DS_Store
 .DS_Store?
