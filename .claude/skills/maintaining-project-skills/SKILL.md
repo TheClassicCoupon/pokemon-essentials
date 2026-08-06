@@ -1,6 +1,6 @@
 ---
 name: maintaining-project-skills
-description: Use when the user asks to add, update, split, retire, or audit a skill in this repo's .claude/skills/ directory, when a repo skill's claims turn out stale or wrong (renamed file, moved method, restructured folder), or after a repo-restructuring change large enough that existing skills might reference paths that no longer exist.
+description: Use when the user asks to add, update, split, retire, or audit a skill in this repo's .claude/skills/ directory, when a repo skill's claims turn out stale or wrong (renamed file, moved method, restructured folder), after a repo-restructuring change large enough that existing skills might reference paths that no longer exist, or — without waiting to be asked — when a task hit repeated fix-loops, the same class of mistake more than once, or an error that didn't match what a skill/hook/CLAUDE.md said should happen: that friction is itself a signal to audit, not just a one-off execution slip.
 ---
 
 # Maintaining Project Skills
@@ -32,6 +32,17 @@ When a change touches file/folder layout broadly (not just content within a file
 1. Grep across `.claude/skills/*/SKILL.md` for path fragments likely to have moved (folder number prefixes like `010_Data`, `021_Compiler`; specific filenames named in tables).
 2. For each hit, re-verify the path still resolves. A memory or skill claim about a repo path is a claim about *when it was written* — treat a mismatch as the skill being stale, not the repo being wrong.
 3. Update the skill in place rather than leaving a note — stale path references in a reference skill are worse than no skill, because they're trusted by default.
+
+## Handling Repeated Friction (Not Just File Changes)
+A rename or a moved file is the *easy* case to catch — it's mechanical, greppable, and the "Handling Repo Restructuring" section above covers it. The harder, more important case is friction that isn't obviously about a path at all: a task took more fix-loop rounds than it should have, a subagent got stuck on the same class of mistake twice, the user corrected you more than once about the same thing, or something happened that the relevant skill/hook/CLAUDE.md text simply didn't predict. Don't file that under "bad luck" or "the subagent was careless" by default — the first hypothesis should be that a skill, a hookify rule, or CLAUDE.md is encoding an assumption that's stale, incomplete, or was never quite right, and the friction is that assumption surfacing.
+
+This repo is expected to keep restructuring substantially over its life — the methodology documented today is not expected to survive unchanged. Treat that as a standing reason to re-check documented assumptions readily, not as a reason to wait for things to settle before bothering.
+
+When you notice this kind of friction, without waiting to be asked:
+1. Ask what specifically went wrong and whether any skill, hookify rule, or CLAUDE.md section asserted (implicitly or explicitly) that it wouldn't happen, or gave guidance that turned out incomplete.
+2. Check all three together — skills, hooks (see `maintaining-project-hooks`), and CLAUDE.md — not just whichever one you were touching when the friction happened. They're maintained as a set in practice, and an assumption baked into one often has a sibling in another (a hookify rule pointing at a skill whose trigger condition is also wrong, for instance).
+3. Fix what you find in place, the same as any other audit — don't just leave a note for later.
+4. If nothing in the docs actually predicted or caused the friction (it really was a one-off execution mistake), that's a valid conclusion too — but reach it by checking, not by assuming.
 
 ## Retiring or Merging Skills
 - Two skills covering overlapping triggers is a sign to merge, not to keep both "just in case" — an agent picking between near-duplicate descriptions is a coin flip, not a design.

@@ -1,6 +1,6 @@
 ---
 name: maintaining-project-hooks
-description: Use when the user asks to add, update, disable, retire, or audit a hookify rule in this repo's .claude/ directory (hookify.*.local.md files), when a rule's trigger fires on the wrong files or stops firing after a restructure, or when deciding whether a piece of guidance belongs in a hook versus a skill.
+description: Use when the user asks to add, update, disable, retire, or audit a hookify rule in this repo's .claude/ directory (hookify.*.local.md files), when a rule's trigger fires on the wrong files or stops firing after a restructure, when deciding whether a piece of guidance belongs in a hook versus a skill, or — without waiting to be asked — after a task hit repeated fix-loops or an unexpected error that a rule's guidance didn't anticipate, since that's as strong a staleness signal as a broken file path.
 ---
 
 # Maintaining Project Hooks
@@ -40,6 +40,7 @@ The established pattern in this repo is a **pairing**: a hookify rule with `even
 | `hook-maintenance` | file | `.claude/hookify.*.local.md` | Dispatch to this skill |
 | `block-rxdata-edit` | file (block) | `Data/Scripts.rxdata` | Hard-block direct edits to the gitignored binary |
 | `verify-before-claiming-done` | stop | always | Reminder to launch `Game.exe` before claiming a fix works |
+| `skill-hook-friction-check` | stop | always | Reminder to audit skills/hooks/CLAUDE.md when a turn hit repeated fix-loops or an unexpected error |
 
 Re-verify this table against the actual files in `.claude/` when auditing — it's a snapshot, not generated, and will drift if a rule is added, renamed, or removed without updating it here.
 
@@ -48,6 +49,8 @@ When a change moves or renames the files a rule's `regex_match` targets:
 1. Grep `.claude/hookify.*.local.md` for path fragments that reference the moved area (folder prefixes, filenames).
 2. Re-verify each hit's pattern still matches real paths — a rule that silently stops firing is worse than a missing rule, because nobody notices its absence.
 3. Update the pattern in place.
+
+Renames aren't the only trigger, and don't wait for one — see `maintaining-project-skills`' "Handling Repeated Friction" section: repeated fix-loops, the same mistake happening twice, or an error a rule's message didn't anticipate is just as strong a signal that a hookify rule (or the skill it points at) is stale or wrong. When that happens, check hooks, skills, and CLAUDE.md together, not just the rule that was directly involved.
 
 ## Common Mistakes
 - Writing a hookify rule for something that needs judgment (an agent still has to decide *how* to apply it) — that belongs in a skill, with the hook (if any) just pointing at it.
