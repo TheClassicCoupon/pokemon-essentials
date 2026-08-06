@@ -4,10 +4,9 @@ Graphics/
 Plugins/
 Screenshots/
 
-# Data folder, but not Data/Scripts folder or messages_core.dat
+# Data folder, except messages_core.dat
 # Data/Scripts.rxdata is a locally-generated script cache — not tracked (see CLAUDE.md)
 Data/*
-!Data/Scripts/
 !Data/messages_core.dat
 
 # Files in the main project folder

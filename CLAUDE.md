@@ -17,7 +17,7 @@ Launch `Game.exe` (mkxp-z). It reads `Game.ini` (points at `Data\Scripts.rxdata`
 
 ## Script source layout — the core architecture
 
-Game logic is **not** stored in `Data/Scripts.rxdata` in this repo (that file is gitignored and, when present, is a tiny stub that just loads the real scripts). Instead, all scripts live as individual `.rb` files under `Data/Scripts/`, organized into numbered top-level folders that are loaded alphanumerically, depth-first:
+Game logic is **not** stored in `Data/Scripts.rxdata` in this repo (that file is gitignored and, when present, is a tiny stub that just loads the real scripts). Instead, all scripts live as individual `.rb` files under `Scripts/`, organized into numbered top-level folders that are loaded alphanumerically, depth-first:
 
 ```
 001_Technical           Core engine plumbing: input, file/IO helpers, plugin manager, debugging/errors
@@ -44,7 +44,7 @@ Game logic is **not** stored in `Data/Scripts.rxdata` in this repo (that file is
 999_Main                Entry point (mainFunction / mainFunctionDebug)
 ```
 
-Only edit the individual `.rb` files under `Data/Scripts/` — never hand-edit `Data/Scripts.rxdata` directly. `scripts_extract.rb` (rxdata → individual `.rb` files) and `scripts_combine.rb` (individual `.rb` files → rxdata) exist only for round-tripping through the raw RPG Maker XP editor and are not part of the normal git-based workflow.
+Only edit the individual `.rb` files under `Scripts/` — never hand-edit `Data/Scripts.rxdata` directly. `scripts_extract.rb` (rxdata → individual `.rb` files) and `scripts_combine.rb` (individual `.rb` files → rxdata) exist only for round-tripping through the raw RPG Maker XP editor and are not part of the normal git-based workflow.
 
 ## Data pipeline: PBS ↔ GameData
 

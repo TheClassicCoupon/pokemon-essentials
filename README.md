@@ -14,9 +14,9 @@ From here, you can edit this project to turn it into your fangame/develop mods. 
 
 ## Scripts
 
-The scripts no longer live in the Scripts.rxdata file. They have been extracted into separate files and placed in the Data/Scripts/ folder (and subfolders within). This makes it easier to work with other people and keep track of changes.
+The scripts no longer live in the Scripts.rxdata file. They have been extracted into separate files and placed in the Scripts/ folder (and subfolders within). This makes it easier to work with other people and keep track of changes.
 
-The scripts are loaded into the game alphanumerically, starting from the top folder (Data/Scripts/) and going depth-first. That is, all scripts in a given folder are loaded, and then each of its subfolder is checked in turn (again in alphanumerical order) for files/folders to load/check.
+The scripts are loaded into the game alphanumerically, starting from the top folder (Scripts/) and going depth-first. That is, all scripts in a given folder are loaded, and then each of its subfolder is checked in turn (again in alphanumerical order) for files/folders to load/check.
 
 ### Extracting and reintegrating scripts
 
@@ -35,7 +35,7 @@ The .gitignore file lists the files that will not be included in this repo. Thes
 
 * The Audio/, Graphics/, Plugins/ and Screenshots/ folders and everything in them.
 * Everything in the Data/ folder, except for:
-  * The Data/Scripts/ folder and everything in there.
+  * The Scripts/ folder and everything in there.
   * Scripts.rxdata (a special version that just loads the individual script files).
   * messages_core.dat, which contains common messages and is useful for translation projects.
 * A few files in the main project folder (two of the Game.xxx files, the RGSS dll file and errorlog.txt).
