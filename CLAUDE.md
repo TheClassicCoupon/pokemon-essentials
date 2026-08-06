@@ -37,7 +37,7 @@ Game logic is **not** stored in `Data/Scripts.rxdata` in this repo (that file is
 015_TrainersAndPlayer
 016_UI                  Menu/screen implementations (Pokedex, Bag, Summary, PC, Mart, etc.)
 017_Minigames
-018_Alternate battle modes
+018_AlternateBattleModes
 019_Utilities
 020_Debug               Debug menus, data editors used in-game (F9)
 021_Compiler            Compiles PBS/* text files and map/event data into Data/*.dat
