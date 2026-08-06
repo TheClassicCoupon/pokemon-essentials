@@ -6,7 +6,7 @@ description: Use when editing any file under PBS/ (pokemon.txt, moves.txt, abili
 # PBS Data Validation
 
 ## Overview
-`PBS/*.txt` are the human-editable source of truth for game data; `Data/Scripts/021_Compiler/002_Compiler_CompilePBS.rb` parses them into binary `Data/*.dat`, loaded into `GameData::*` classes at runtime (see the rgss-essentials-scripting skill). Never hand-edit `Data/*.dat` — it's regenerated from PBS on next boot whenever a PBS file's mtime is newer, and any manual edit there is silently discarded.
+`PBS/*.txt` are the human-editable source of truth for game data; `Scripts/021_Compiler/002_Compiler_CompilePBS.rb` parses them into binary `Data/*.dat`, loaded into `GameData::*` classes at runtime (see the rgss-essentials-scripting skill). Never hand-edit `Data/*.dat` — it's regenerated from PBS on next boot whenever a PBS file's mtime is newer, and any manual edit there is silently discarded.
 
 These files are large (`pokemon.txt` ~23k lines, `moves.txt` ~8.7k, `items.txt` ~6.5k) and have no schema validation outside the compiler itself — a bad line fails loudly at boot, not at save time.
 
@@ -18,7 +18,7 @@ These files are large (`pokemon.txt` ~23k lines, `moves.txt` ~8.7k, `items.txt` 
 - Enum-valued fields (types, egg groups, flags) must match a known enum value exactly (case-sensitive) — an unrecognized value raises "Undefined value X in Y" or "Incorrect value X in Y", naming the enum.
 
 ## What the Compiler Validates Per Field
-`Data/Scripts/021_Compiler/001_Compiler.rb` has typed field coercers (`csvInt!`, `csvPosInt!`, `csvFloat!`, `csvBoolean!`, `csvEnumField!`, etc. — all bang-suffixed) that each PBS schema field is declared against. Validation failures always append `FileLineData.linereport` to the error — this gives you the exact file and line number, so the fastest triage is: read the error, jump to that line, check the field's declared type in the relevant schema. Most schemas are a `SCHEMA` constant in the class's file under `Data/Scripts/010_Data/002_PBS data/` (e.g. `004_Ability.rb`, `006_Item.rb`) — but `GameData::Species` (`008_Species.rb`, backing `pokemon.txt`, the biggest and most-edited PBS file) has no `SCHEMA` constant; its fields are built by a `self.schema(compiling_forms = false)` method instead, with a different field set depending on whether it's compiling a base species section or a form section. Search for `schema` (not `SCHEMA`) if grepping that file comes up empty.
+`Scripts/021_Compiler/001_Compiler.rb` has typed field coercers (`csvInt!`, `csvPosInt!`, `csvFloat!`, `csvBoolean!`, `csvEnumField!`, etc. — all bang-suffixed) that each PBS schema field is declared against. Validation failures always append `FileLineData.linereport` to the error — this gives you the exact file and line number, so the fastest triage is: read the error, jump to that line, check the field's declared type in the relevant schema. Most schemas are a `SCHEMA` constant in the class's file under `Scripts/010_Data/002_PBS data/` (e.g. `004_Ability.rb`, `006_Item.rb`) — but `GameData::Species` (`008_Species.rb`, backing `pokemon.txt`, the biggest and most-edited PBS file) has no `SCHEMA` constant; its fields are built by a `self.schema(compiling_forms = false)` method instead, with a different field set depending on whether it's compiling a base species section or a form section. Search for `schema` (not `SCHEMA`) if grepping that file comes up empty.
 
 | Symptom | Likely cause |
 |---|---|
@@ -36,6 +36,6 @@ These files are large (`pokemon.txt` ~23k lines, `moves.txt` ~8.7k, `items.txt` 
 
 ## Common Mistakes
 - Editing `Data/*.dat` directly — always discarded on next boot, edit the PBS `.txt` instead.
-- Copy-pasting a block between species/moves/items and forgetting to update the `[InternalName]` header — causes a silent duplicate-key overwrite rather than a compile error: `GameData::ClassMethodsSymbols#register` (`Data/Scripts/010_Data/001_GameData.rb`) keys `DATA` by `hash[:id]` alone, so the later section with the same internal name silently replaces the earlier one.
+- Copy-pasting a block between species/moves/items and forgetting to update the `[InternalName]` header — causes a silent duplicate-key overwrite rather than a compile error: `GameData::ClassMethodsSymbols#register` (`Scripts/010_Data/001_GameData.rb`) keys `DATA` by `hash[:id]` alone, so the later section with the same internal name silently replaces the earlier one.
 - Assuming a compile error's line number is the only problem — `pbCompilerEachPreppedLine` reports the first failure per file; fix and recompile rather than trying to pre-scan the whole file by eye for a 23k-line file like `pokemon.txt`.
 - Not saving as UTF-8 after editing in an editor that defaults to a different encoding — produces a misleading "missing section header" error instead of an encoding error.

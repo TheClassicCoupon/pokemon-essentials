@@ -35,7 +35,7 @@ The established pattern in this repo is a **pairing**: a hookify rule with `even
 | Rule | Event | Trigger | Purpose |
 |---|---|---|---|
 | `pbs-edit-validation` | file | `PBS/*.txt` | Dispatch to `pbs-data-validation` skill |
-| `rgss-script-edit` | file | `Data/Scripts/*.rb` | Dispatch to `rgss-essentials-scripting` skill |
+| `rgss-script-edit` | file | `Scripts/*.rb` | Dispatch to `rgss-essentials-scripting` skill |
 | `skill-maintenance` | file | `.claude/skills/*.md` | Dispatch to `maintaining-project-skills` skill |
 | `hook-maintenance` | file | `.claude/hookify.*.local.md` | Dispatch to this skill |
 | `block-rxdata-edit` | file (block) | `Data/Scripts.rxdata` | Hard-block direct edits to the gitignored binary |

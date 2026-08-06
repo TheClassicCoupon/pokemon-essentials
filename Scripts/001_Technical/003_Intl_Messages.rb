@@ -19,7 +19,7 @@ module Translator
         find_translatable_text_from_RGSS_script(texts, scr)
       end
       # If Scripts.rxdata only has 1 section, scripts have been extracted. Get
-      # script texts from .rb files in Data/Scripts
+      # script texts from .rb files in Scripts
       if $RGSS_SCRIPTS.length == 1
         Dir.all("Scripts").each do |script_file|
           if System.uptime - t >= 5
