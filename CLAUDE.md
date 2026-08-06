@@ -12,7 +12,7 @@ There is no npm/cargo/make-style build system, no test suite, and no CI-run lint
 
 Launch `Game.exe` (mkxp-z). It reads `Game.ini` (points at `Data\Scripts.rxdata`) and `mkxp.json` for window/runtime settings, then boots into `Data/Scripts/999_Main/999_Main.rb`.
 
-- The `Audio/`, `Graphics/`, and `Plugins/` folders, and almost everything under `Data/` (except `Data/Scripts/`, `Data/Scripts.rxdata`, `Data/messages_core.dat`) are gitignored — they contain binary game assets/compiled data not tracked in this repo. A working checkout needs a full copy of Essentials v21.1 assets merged with this repo's tracked files (see README.md for the fork workflow).
+- The `Audio/`, `Graphics/`, and `Plugins/` folders, and almost everything under `Data/` (except `Data/Scripts/` and `Data/messages_core.dat`) are gitignored — they contain binary game assets/compiled data not tracked in this repo. `Data/Scripts.rxdata` itself is also gitignored; it's a locally-generated script cache, not a tracked file. A working checkout needs a full copy of Essentials v21.1 assets merged with this repo's tracked files (see README.md for the fork workflow).
 - In `$DEBUG` mode (i.e. not a compiled `.rgssad` release build), the engine auto-recompiles `PBS/*.txt` into `Data/*.dat` at startup whenever a PBS file is newer than the compiled data. Force a full recompile by holding Ctrl at boot, or via the in-game debug menu (F9 in-map, or during battle) → "Fully compile all data".
 
 ## Script source layout — the core architecture

@@ -1,0 +1,25 @@
+# Auto-detect text files and normalize them to LF line endings in the
+# repository, regardless of a contributor's local core.autocrlf setting.
+* text=auto
+
+# Known binary assets — never line-ending-convert, never text-diff.
+# (RGSS/RPG Maker data, engine binaries, fonts, images, audio.)
+*.rxdata binary
+*.rgss3a binary
+*.rgssad binary
+*.dat binary
+*.exe binary
+*.dll binary
+*.ttf binary
+*.otf binary
+*.bmp binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.wav binary
+*.ogg binary
+*.mp3 binary
+*.mid binary
+*.sf2 binary

@@ -5,8 +5,8 @@ Plugins/
 Screenshots/
 
 # Data folder, but not Data/Scripts folder or messages_core.dat
+# Data/Scripts.rxdata is a locally-generated script cache — not tracked (see CLAUDE.md)
 Data/*
-!Data/Scripts.rxdata
 !Data/Scripts/
 !Data/messages_core.dat
 
@@ -22,8 +22,12 @@ RGSS*.dll
 .idea/
 *.mkproj
 
-# Local (personal) hookify rules — not shared via the repo
+# Ruby LSP local cache (regenerated per machine)
+.ruby-lsp/
+
+# Local (personal) Claude Code / hookify files — not shared via the repo
 .claude/*.local.md
+.claude/settings.local.json
 
 # Operating system generated files & folders
 .DS_Store
@@ -32,6 +36,9 @@ ehthumbs.db
 Thumbs.db
 [Dd]esktop.ini
 
-# Temp files
-
+# Temp / backup files
 ~*
+*.tmp
+*.bak
+*.orig
+*.log
