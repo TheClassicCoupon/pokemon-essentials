@@ -34,7 +34,7 @@ Game logic is **not** stored in `Data/Scripts.rxdata` in this repo (that file is
 012_Overworld
 013_Items
 014_Pokemon             Pokemon, Move (instance), MegaEvolution, ShadowPokemon, Owner
-015_Trainers and player
+015_TrainersAndPlayer
 016_UI                  Menu/screen implementations (Pokedex, Bag, Summary, PC, Mart, etc.)
 017_Minigames
 018_Alternate battle modes
