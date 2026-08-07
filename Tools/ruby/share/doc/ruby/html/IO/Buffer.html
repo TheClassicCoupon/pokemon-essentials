@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class IO::Buffer - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+  var index_rel_prefix = "../";
+</script>
+
+<script src="../js/navigation.js" defer></script>
+<script src="../js/search.js" defer></script>
+<script src="../js/search_index.js" defer></script>
+<script src="../js/searcher.js" defer></script>
+<script src="../js/darkfish.js" defer></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link"><a href="../Object.html">Object</a>
+</div>
+
+    
+<div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+    <li><a class="include" href="../Comparable.html">Comparable</a>
+  </ul>
+</div>
+
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-c-for">::for</a>
+    <li ><a href="#method-c-map">::map</a>
+    <li ><a href="#method-c-new">::new</a>
+    <li ><a href="#method-i-3C-3D-3E">#&lt;=&gt;</a>
+    <li ><a href="#method-i-clear">#clear</a>
+    <li ><a href="#method-i-copy">#copy</a>
+    <li ><a href="#method-i-empty-3F">#empty?</a>
+    <li ><a href="#method-i-external-3F">#external?</a>
+    <li ><a href="#method-i-free">#free</a>
+    <li ><a href="#method-i-get_string">#get_string</a>
+    <li ><a href="#method-i-get_value">#get_value</a>
+    <li ><a href="#method-i-hexdump">#hexdump</a>
+    <li ><a href="#method-i-inspect">#inspect</a>
+    <li ><a href="#method-i-internal-3F">#internal?</a>
+    <li ><a href="#method-i-locked">#locked</a>
+    <li ><a href="#method-i-locked-3F">#locked?</a>
+    <li ><a href="#method-i-mapped-3F">#mapped?</a>
+    <li ><a href="#method-i-null-3F">#null?</a>
+    <li ><a href="#method-i-pread">#pread</a>
+    <li ><a href="#method-i-pwrite">#pwrite</a>
+    <li ><a href="#method-i-read">#read</a>
+    <li ><a href="#method-i-readonly-3F">#readonly?</a>
+    <li ><a href="#method-i-resize">#resize</a>
+    <li ><a href="#method-i-set_string">#set_string</a>
+    <li ><a href="#method-i-set_value">#set_value</a>
+    <li ><a href="#method-i-size">#size</a>
+    <li ><a href="#method-i-slice">#slice</a>
+    <li ><a href="#method-i-to_s">#to_s</a>
+    <li ><a href="#method-i-transfer">#transfer</a>
+    <li ><a href="#method-i-valid-3F">#valid?</a>
+    <li ><a href="#method-i-write">#write</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-IO::Buffer">
+  <h1 id="class-IO::Buffer" class="class">
+    class IO::Buffer
+  </h1>
+
+  <section class="description">
+    
+<p><a href="Buffer.html"><code>IO::Buffer</code></a> is a low-level efficient buffer for input/output. There are three ways of using buffer:</p>
+<ul><li>
+<p>Create an empty buffer with <a href="Buffer.html#method-c-new"><code>::new</code></a>, fill it with data using <a href="Buffer.html#method-i-copy"><code>copy</code></a> or <a href="Buffer.html#method-i-set_value"><code>set_value</code></a>, <a href="Buffer.html#method-i-set_string"><code>set_string</code></a>, get data with <a href="Buffer.html#method-i-get_string"><code>get_string</code></a>;</p>
+</li><li>
+<p>Create a buffer mapped to some string with <a href="Buffer.html#method-c-for"><code>::for</code></a>, then it could be used both for reading with <a href="Buffer.html#method-i-get_string"><code>get_string</code></a> or <a href="Buffer.html#method-i-get_value"><code>get_value</code></a>, and writing (writing will change the source string, too);</p>
+</li><li>
+<p>Create a buffer mapped to some file with <a href="Buffer.html#method-c-map"><code>::map</code></a>, then it could be used for reading and writing the underlying file.</p>
+</li></ul>
+
+<p>Interaction with string and file memory is performed by efficient low-level C mechanisms like ‘memcpy`.</p>
+
+<p>The class is meant to be an utility for implementing more high-level mechanisms like <a href="../Fiber/SchedulerInterface.html#method-i-io_read"><code>Fiber::SchedulerInterface#io_read</code></a> and <a href="../Fiber/SchedulerInterface.html#method-i-io_write"><code>Fiber::SchedulerInterface#io_write</code></a>.</p>
+
+<p><strong>Examples of usage:</strong></p>
+
+<p>Empty buffer:</p>
+
+<pre class="ruby"><span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">8</span>)  <span class="ruby-comment"># create empty 8-byte buffer</span>
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x0000555f5d1a5c50+8 INTERNAL&gt;</span>
+<span class="ruby-comment"># ...</span>
+<span class="ruby-identifier">buffer</span>
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># &lt;IO::Buffer 0x0000555f5d156ab0+8 INTERNAL&gt;</span>
+<span class="ruby-comment"># 0x00000000  00 00 00 00 00 00 00 00</span>
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">set_string</span>(<span class="ruby-string">&#39;test&#39;</span>, <span class="ruby-value">2</span>) <span class="ruby-comment"># put there bytes of the &quot;test&quot; string, starting from offset 2</span>
+<span class="ruby-comment"># =&gt; 4</span>
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">get_string</span>  <span class="ruby-comment"># get the result</span>
+<span class="ruby-comment"># =&gt; &quot;\x00\x00test\x00\x00&quot;</span>
+</pre>
+
+<p>Buffer from string:</p>
+
+<pre class="ruby"><span class="ruby-identifier">string</span> = <span class="ruby-string">&#39;data&#39;</span>
+<span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">for</span>(<span class="ruby-identifier">str</span>)
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x00007f3f02be9b18+4 SLICE&gt;</span>
+<span class="ruby-comment"># ...</span>
+<span class="ruby-identifier">buffer</span>
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x00007f3f02be9b18+4 SLICE&gt;</span>
+<span class="ruby-comment"># 0x00000000  64 61 74 61                                     data</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">get_string</span>(<span class="ruby-value">2</span>)  <span class="ruby-comment"># read content starting from offset 2</span>
+<span class="ruby-comment"># =&gt; &quot;ta&quot;</span>
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">set_string</span>(<span class="ruby-string">&#39;---&#39;</span>, <span class="ruby-value">1</span>) <span class="ruby-comment"># write content, starting from offset 1</span>
+<span class="ruby-comment"># =&gt; 3</span>
+<span class="ruby-identifier">buffer</span>
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x00007f3f02be9b18+4 SLICE&gt;</span>
+<span class="ruby-comment"># 0x00000000  64 2d 2d 2d                                     d---</span>
+<span class="ruby-identifier">string</span>  <span class="ruby-comment"># original string changed, too</span>
+<span class="ruby-comment"># =&gt; &quot;d---&quot;</span>
+</pre>
+
+<p>Buffer from file:</p>
+
+<pre class="ruby"><span class="ruby-constant">File</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&#39;test.txt&#39;</span>, <span class="ruby-string">&#39;test data&#39;</span>)
+<span class="ruby-comment"># =&gt; 9</span>
+<span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">map</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;test.txt&#39;</span>))
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x00007f3f0768c000+9 MAPPED IMMUTABLE&gt;</span>
+<span class="ruby-comment"># ...</span>
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">get_string</span>(<span class="ruby-value">5</span>, <span class="ruby-value">2</span>) <span class="ruby-comment"># read 2 bytes, starting from offset 5</span>
+<span class="ruby-comment"># =&gt; &quot;da&quot;</span>
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">set_string</span>(<span class="ruby-string">&#39;---&#39;</span>, <span class="ruby-value">1</span>) <span class="ruby-comment"># attempt to write</span>
+<span class="ruby-comment"># in `set_string&#39;: Buffer is not writable! (IO::Buffer::AccessError)</span>
+
+<span class="ruby-comment"># To create writable file-mapped buffer</span>
+<span class="ruby-comment"># Open file for read-write, pass size, offset, and flags=0</span>
+<span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">map</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;test.txt&#39;</span>, <span class="ruby-string">&#39;r+&#39;</span>), <span class="ruby-value">9</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>)
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">set_string</span>(<span class="ruby-string">&#39;---&#39;</span>, <span class="ruby-value">1</span>)
+<span class="ruby-comment"># =&gt; 3 -- bytes written</span>
+<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&#39;test.txt&#39;</span>)
+<span class="ruby-comment"># =&gt; &quot;t--- data&quot;</span>
+</pre>
+
+<p><strong>The class is experimental and the interface is subject to change.</strong></p>
+
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+        <dt id="BIG_ENDIAN">BIG_ENDIAN
+        <dd>
+        <dt id="DEFAULT_SIZE">DEFAULT_SIZE
+        <dd>
+        <dt id="EXTERNAL">EXTERNAL
+        <dd>
+        <dt id="HOST_ENDIAN">HOST_ENDIAN
+        <dd>
+        <dt id="INTERNAL">INTERNAL
+        <dd>
+        <dt id="LITTLE_ENDIAN">LITTLE_ENDIAN
+        <dd>
+        <dt id="LOCKED">LOCKED
+        <dd>
+        <dt id="MAPPED">MAPPED
+        <dd>
+        <dt id="NETWORK_ENDIAN">NETWORK_ENDIAN
+        <dd>
+        <dt id="PAGE_SIZE">PAGE_SIZE
+        <dd>
+        <dt id="PRIVATE">PRIVATE
+        <dd>
+        <dt id="READONLY">READONLY
+        <dd>
+      </dl>
+    </section>
+
+
+
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+      <div id="method-c-for" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            IO::Buffer.for(string) &rarr; io_buffer
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Creates a <a href="Buffer.html"><code>IO::Buffer</code></a> from the given string’s memory. The buffer remains associated with the string, and writing to a buffer will update the string’s contents.</p>
+
+<p>Until <a href="Buffer.html#method-i-free"><code>free</code></a> is invoked on the buffer, either explicitly or via the garbage collector, the source string will be locked and cannot be modified.</p>
+
+<p>If the string is frozen, it will create a read-only buffer which cannot be modified.</p>
+
+<pre class="ruby"><span class="ruby-identifier">string</span> = <span class="ruby-string">&#39;test&#39;</span>
+<span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">for</span>(<span class="ruby-identifier">str</span>)
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">external?</span> <span class="ruby-comment">#=&gt; true</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">get_string</span>(<span class="ruby-value">0</span>, <span class="ruby-value">1</span>)
+<span class="ruby-comment"># =&gt; &quot;t&quot;</span>
+<span class="ruby-identifier">string</span>
+<span class="ruby-comment"># =&gt; &quot;best&quot;</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">resize</span>(<span class="ruby-value">100</span>)
+<span class="ruby-comment"># in `resize&#39;: Cannot resize external buffer! (IO::Buffer::AccessError)</span>
+</pre>
+
+          <div class="method-source-code" id="for-source">
+            <pre>VALUE
+rb_io_buffer_type_for(VALUE klass, VALUE string)
+{
+    io_buffer_experimental();
+
+    StringValue(string);
+
+    VALUE instance = rb_io_buffer_type_allocate(klass);
+
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(instance, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    rb_str_locktmp(string);
+
+    enum rb_io_buffer_flags flags = RB_IO_BUFFER_EXTERNAL;
+
+    if (RB_OBJ_FROZEN(string))
+        flags |= RB_IO_BUFFER_READONLY;
+
+    io_buffer_initialize(data, RSTRING_PTR(string), RSTRING_LEN(string), flags, string);
+
+    return instance;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-map" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            IO::Buffer.map(file, [size, [offset, [flags]]]) &rarr; io_buffer
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Create an <a href="Buffer.html"><code>IO::Buffer</code></a> for reading from <code>file</code> by memory-mapping the file. <code>file_io</code> should be a <code>File</code> instance, opened for reading.</p>
+
+<p>Optional <code>size</code> and <code>offset</code> of mapping can be specified.</p>
+
+<p>By default, the buffer would be immutable (read only); to create a writable mapping, you need to open a file in read-write mode, and explicitly pass <code>flags</code> argument without IO::Buffer::IMMUTABLE.</p>
+
+<pre class="ruby"><span class="ruby-constant">File</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&#39;test.txt&#39;</span>, <span class="ruby-string">&#39;test&#39;</span>)
+
+<span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">map</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;test.txt&#39;</span>), <span class="ruby-keyword">nil</span>, <span class="ruby-value">0</span>, <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span><span class="ruby-operator">::</span><span class="ruby-constant">READONLY</span>)
+<span class="ruby-comment"># =&gt; #&lt;IO::Buffer 0x00000001014a0000+4 MAPPED READONLY&gt;</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">readonly?</span>   <span class="ruby-comment"># =&gt; true</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">get_string</span>
+<span class="ruby-comment"># =&gt; &quot;test&quot;</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">set_string</span>(<span class="ruby-string">&#39;b&#39;</span>, <span class="ruby-value">0</span>)
+<span class="ruby-comment"># `set_string&#39;: Buffer is not writable! (IO::Buffer::AccessError)</span>
+
+<span class="ruby-comment"># create read/write mapping: length 4 bytes, offset 0, flags 0</span>
+<span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">map</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;test.txt&#39;</span>, <span class="ruby-string">&#39;r+&#39;</span>), <span class="ruby-value">4</span>, <span class="ruby-value">0</span>)
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">set_string</span>(<span class="ruby-string">&#39;b&#39;</span>, <span class="ruby-value">0</span>)
+<span class="ruby-comment"># =&gt; 1</span>
+
+<span class="ruby-comment"># Check it</span>
+<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&#39;test.txt&#39;</span>)
+<span class="ruby-comment"># =&gt; &quot;best&quot;</span>
+</pre>
+
+<p>Note that some operating systems may not have cache coherency between mapped buffers and file reads.</p>
+
+          <div class="method-source-code" id="map-source">
+            <pre>static VALUE
+io_buffer_map(int argc, VALUE *argv, VALUE klass)
+{
+    if (argc &lt; 1 || argc &gt; 4) {
+        rb_error_arity(argc, 2, 4);
+    }
+
+    // We might like to handle a string path?
+    VALUE io = argv[0];
+
+    size_t size;
+    if (argc &gt;= 2 &amp;&amp; !RB_NIL_P(argv[1])) {
+        size = RB_NUM2SIZE(argv[1]);
+    }
+    else {
+        off_t file_size = rb_file_size(io);
+
+        // Compiler can confirm that we handled file_size &lt; 0 case:
+        if (file_size &lt; 0) {
+            rb_raise(rb_eArgError, &quot;Invalid negative file size!&quot;);
+        }
+        // Here, we assume that file_size is positive:
+        else if ((uintmax_t)file_size &gt; SIZE_MAX) {
+            rb_raise(rb_eArgError, &quot;File larger than address space!&quot;);
+        }
+        else {
+            // This conversion should be safe:
+            size = (size_t)file_size;
+        }
+    }
+
+    off_t offset = 0;
+    if (argc &gt;= 3) {
+        offset = NUM2OFFT(argv[2]);
+    }
+
+    enum rb_io_buffer_flags flags = 0;
+    if (argc &gt;= 4) {
+        flags = RB_NUM2UINT(argv[3]);
+    }
+
+    return rb_io_buffer_map(io, size, offset, flags);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-c-new" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            IO::Buffer.new([size = DEFAULT_SIZE, [flags = 0]]) &rarr; io_buffer
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Create a new zero-filled <a href="Buffer.html"><code>IO::Buffer</code></a> of <code>size</code> bytes. By default, the buffer will be <em>internal</em>: directly allocated chunk of the memory. But if the requested <code>size</code> is more than OS-specific IO::Bufer::PAGE_SIZE, the buffer would be allocated using the virtual memory mechanism (anonymous <code>mmap</code> on Unix, <code>VirtualAlloc</code> on Windows). The behavior can be forced by passing <a href="Buffer.html#MAPPED"><code>IO::Buffer::MAPPED</code></a> as a second parameter.</p>
+
+<p>Examples</p>
+
+<pre class="ruby"><span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">4</span>)
+<span class="ruby-comment"># =&gt;</span>
+<span class="ruby-comment">#  #&lt;IO::Buffer 0x000055b34497ea10+4 INTERNAL&gt;</span>
+<span class="ruby-comment">#  0x00000000  00 00 00 00                                     ....</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">get_string</span>(<span class="ruby-value">0</span>, <span class="ruby-value">1</span>) <span class="ruby-comment"># =&gt; &quot;\x00&quot;</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">set_string</span>(<span class="ruby-string">&quot;test&quot;</span>)
+<span class="ruby-identifier">buffer</span>
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x000055b34497ea10+4 INTERNAL&gt;</span>
+<span class="ruby-comment"># 0x00000000  74 65 73 74                                     test</span>
+</pre>
+
+          <div class="method-source-code" id="new-source">
+            <pre>VALUE
+rb_io_buffer_initialize(int argc, VALUE *argv, VALUE self)
+{
+    io_buffer_experimental();
+
+    if (argc &lt; 0 || argc &gt; 2) {
+        rb_error_arity(argc, 0, 2);
+    }
+
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    size_t size;
+
+    if (argc &gt; 0) {
+        size = RB_NUM2SIZE(argv[0]);
+    } else {
+        size = RUBY_IO_BUFFER_DEFAULT_SIZE;
+    }
+
+    enum rb_io_buffer_flags flags = 0;
+    if (argc &gt;= 2) {
+        flags = RB_NUM2UINT(argv[1]);
+    }
+    else {
+        flags |= io_flags_for_size(size);
+    }
+
+    io_buffer_initialize(data, NULL, size, flags, Qnil);
+
+    return self;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-3C-3D-3E" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            &lt;=&gt;(other) &rarr; true or false
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Buffers are compared by size and exact contents of the memory they are referencing using <code>memcmp</code>.</p>
+
+          <div class="method-source-code" id="3C-3D-3E-source">
+            <pre>static VALUE
+rb_io_buffer_compare(VALUE self, VALUE other)
+{
+    const void *ptr1, *ptr2;
+    size_t size1, size2;
+
+    rb_io_buffer_get_bytes_for_reading(self, &amp;ptr1, &amp;size1);
+    rb_io_buffer_get_bytes_for_reading(other, &amp;ptr2, &amp;size2);
+
+    if (size1 &lt; size2) {
+        return RB_INT2NUM(-1);
+    }
+
+    if (size1 &gt; size2) {
+        return RB_INT2NUM(1);
+    }
+
+    return RB_INT2NUM(memcmp(ptr1, ptr2, size1));
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-clear" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            clear(value = 0, [offset, [length]]) &rarr; self
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Fill buffer with <code>value</code>, starting with <code>offset</code> and going for <code>length</code> bytes.</p>
+
+<pre class="ruby"><span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">for</span>(<span class="ruby-string">&#39;test&#39;</span>)
+<span class="ruby-comment"># =&gt;</span>
+<span class="ruby-comment">#   &lt;IO::Buffer 0x00007fca40087c38+4 SLICE&gt;</span>
+<span class="ruby-comment">#   0x00000000  74 65 73 74         test</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">clear</span>
+<span class="ruby-comment"># =&gt;</span>
+<span class="ruby-comment">#   &lt;IO::Buffer 0x00007fca40087c38+4 SLICE&gt;</span>
+<span class="ruby-comment">#   0x00000000  00 00 00 00         ....</span>
+
+<span class="ruby-identifier">buf</span>.<span class="ruby-identifier">clear</span>(<span class="ruby-value">1</span>) <span class="ruby-comment"># fill with 1</span>
+<span class="ruby-comment"># =&gt;</span>
+<span class="ruby-comment">#   &lt;IO::Buffer 0x00007fca40087c38+4 SLICE&gt;</span>
+<span class="ruby-comment">#   0x00000000  01 01 01 01         ....</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">clear</span>(<span class="ruby-value">2</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2</span>) <span class="ruby-comment"># fill with 2, starting from offset 1, for 2 bytes</span>
+<span class="ruby-comment"># =&gt;</span>
+<span class="ruby-comment">#   &lt;IO::Buffer 0x00007fca40087c38+4 SLICE&gt;</span>
+<span class="ruby-comment">#   0x00000000  01 02 02 01         ....</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">clear</span>(<span class="ruby-value">2</span>, <span class="ruby-value">1</span>) <span class="ruby-comment"># fill with 2, starting from offset 1</span>
+<span class="ruby-comment"># =&gt;</span>
+<span class="ruby-comment">#   &lt;IO::Buffer 0x00007fca40087c38+4 SLICE&gt;</span>
+<span class="ruby-comment">#   0x00000000  01 02 02 02         ....</span>
+</pre>
+
+          <div class="method-source-code" id="clear-source">
+            <pre>static VALUE
+io_buffer_clear(int argc, VALUE *argv, VALUE self)
+{
+    if (argc &gt; 3) rb_error_arity(argc, 0, 3);
+
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    uint8_t value = 0;
+    if (argc &gt;= 1) {
+        value = NUM2UINT(argv[0]);
+    }
+
+    size_t offset = 0;
+    if (argc &gt;= 2) {
+        offset = NUM2SIZET(argv[1]);
+    }
+
+    size_t length;
+    if (argc &gt;= 3) {
+        length = NUM2SIZET(argv[2]);
+    } else {
+        length = data-&gt;size - offset;
+    }
+
+    rb_io_buffer_clear(self, value, offset, length);
+
+    return self;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-copy" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            copy(source, [offset, [length, [source_offset]]]) &rarr; size
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Efficiently copy data from a source <a href="Buffer.html"><code>IO::Buffer</code></a> into the buffer, at <code>offset</code> using <code>memcpy</code>. For copying <a href="../String.html"><code>String</code></a> instances, see <a href="Buffer.html#method-i-set_string"><code>set_string</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">32</span>)
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x0000555f5ca22520+32 INTERNAL&gt;</span>
+<span class="ruby-comment"># 0x00000000  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................</span>
+<span class="ruby-comment"># 0x00000010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................  *</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">copy</span>(<span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">for</span>(<span class="ruby-string">&quot;test&quot;</span>), <span class="ruby-value">8</span>)
+<span class="ruby-comment"># =&gt; 4 -- size of data copied</span>
+<span class="ruby-identifier">buffer</span>
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x0000555f5cf8fe40+32 INTERNAL&gt;</span>
+<span class="ruby-comment"># 0x00000000  00 00 00 00 00 00 00 00 74 65 73 74 00 00 00 00 ........test....</span>
+<span class="ruby-comment"># 0x00000010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 ................ *</span>
+</pre>
+
+<p><a href="Buffer.html#method-i-copy"><code>copy</code></a> can be used to put data into strings associated with buffer:</p>
+
+<pre class="ruby"><span class="ruby-identifier">string</span>= <span class="ruby-string">&quot;data:    &quot;</span>
+<span class="ruby-comment"># =&gt; &quot;data:    &quot;</span>
+<span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">for</span>(<span class="ruby-identifier">str</span>)
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">copy</span>(<span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">for</span>(<span class="ruby-string">&quot;test&quot;</span>), <span class="ruby-value">5</span>)
+<span class="ruby-comment"># =&gt; 4</span>
+<span class="ruby-identifier">string</span>
+<span class="ruby-comment"># =&gt; &quot;data:test&quot;</span>
+</pre>
+
+<p>Attempt to copy into a read-only buffer will fail:</p>
+
+<pre class="ruby"><span class="ruby-constant">File</span>.<span class="ruby-identifier">write</span>(<span class="ruby-string">&#39;test.txt&#39;</span>, <span class="ruby-string">&#39;test&#39;</span>)
+<span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">map</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;test.txt&#39;</span>), <span class="ruby-keyword">nil</span>, <span class="ruby-value">0</span>, <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span><span class="ruby-operator">::</span><span class="ruby-constant">READONLY</span>)
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">copy</span>(<span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">for</span>(<span class="ruby-string">&quot;test&quot;</span>), <span class="ruby-value">8</span>)
+<span class="ruby-comment"># in `copy&#39;: Buffer is not writable! (IO::Buffer::AccessError)</span>
+</pre>
+
+<p>See <a href="Buffer.html#method-c-map"><code>::map</code></a> for details of creation of mutable file mappings, this will work:</p>
+
+<pre class="ruby"><span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">map</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&#39;test.txt&#39;</span>, <span class="ruby-string">&#39;r+&#39;</span>))
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">copy</span>(<span class="ruby-string">&quot;boom&quot;</span>, <span class="ruby-value">0</span>)
+<span class="ruby-comment"># =&gt; 4</span>
+<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-string">&#39;test.txt&#39;</span>)
+<span class="ruby-comment"># =&gt; &quot;boom&quot;</span>
+</pre>
+
+<p>Attempt to copy the data which will need place outside of buffer’s bounds will fail:</p>
+
+<pre class="ruby"><span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2</span>)
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">copy</span>(<span class="ruby-string">&#39;test&#39;</span>, <span class="ruby-value">0</span>)
+<span class="ruby-comment"># in `copy&#39;: Specified offset+length exceeds source size! (ArgumentError)</span>
+</pre>
+
+          <div class="method-source-code" id="copy-source">
+            <pre>static VALUE
+io_buffer_copy(int argc, VALUE *argv, VALUE self)
+{
+    if (argc &lt; 1 || argc &gt; 4) rb_error_arity(argc, 1, 4);
+
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    VALUE source = argv[0];
+    const void *source_base;
+    size_t source_size;
+
+    rb_io_buffer_get_bytes_for_reading(source, &amp;source_base, &amp;source_size);
+
+    return io_buffer_copy_from(data, source_base, source_size, argc-1, argv+1);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-empty-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            external? &rarr; true or false
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <pre>If the buffer is _external_, meaning it references from memory which is not
+allocated or mapped by the buffer itself.
+
+A buffer created using ::for has an external reference to the string&#39;s
+memory.</pre>
+
+<p>External buffer can’t be resized.</p>
+
+          <div class="method-source-code" id="empty-3F-source">
+            <pre>static VALUE
+rb_io_buffer_empty_p(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    return RBOOL(data-&gt;size == 0);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-external-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">external?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="external-3F-source">
+            <pre>static VALUE
+rb_io_buffer_external_p(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    return RBOOL(data-&gt;flags &amp; RB_IO_BUFFER_EXTERNAL);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-free" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            free &rarr; self
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>If the buffer references memory, release it back to the operating system.</p>
+<ul><li>
+<p>for a <em>mapped</em> buffer (e.g. from file): unmap.</p>
+</li><li>
+<p>for a buffer created from scratch: free memory.</p>
+</li><li>
+<p>for a buffer created from string: undo the association.</p>
+</li></ul>
+
+<p>After the buffer is freed, no further operations can’t be performed on it.</p>
+
+<pre class="ruby"><span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">for</span>(<span class="ruby-string">&#39;test&#39;</span>)
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">free</span>
+<span class="ruby-comment"># =&gt; #&lt;IO::Buffer 0x0000000000000000+0 NULL&gt;</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">get_value</span>(<span class="ruby-value">:U8</span>, <span class="ruby-value">0</span>)
+<span class="ruby-comment"># in `get_value&#39;: The buffer is not allocated! (IO::Buffer::AllocationError)</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">get_string</span>
+<span class="ruby-comment"># in `get_string&#39;: The buffer is not allocated! (IO::Buffer::AllocationError)</span>
+
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">null?</span>
+<span class="ruby-comment"># =&gt; true</span>
+</pre>
+
+<p>You can resize a freed buffer to re-allocate it.</p>
+
+          <div class="method-source-code" id="free-source">
+            <pre>VALUE
+rb_io_buffer_free(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    if (data-&gt;flags &amp; RB_IO_BUFFER_LOCKED) {
+        rb_raise(rb_eIOBufferLockedError, &quot;Buffer is locked!&quot;);
+    }
+
+    io_buffer_free(data);
+
+    return self;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-get_string" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            get_string([offset, [length, [encoding]]]) &rarr; string
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Read a chunk or all of the buffer into a string, in the specified <code>encoding</code>. If no encoding is provided <code>Encoding::BINARY</code> is used.</p>
+
+<pre class="ruby"><span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">for</span>(<span class="ruby-string">&#39;test&#39;</span>)
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">get_string</span>
+<span class="ruby-comment"># =&gt; &quot;test&quot;</span>
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">get_string</span>(<span class="ruby-value">2</span>)
+<span class="ruby-comment"># =&gt; &quot;st&quot;</span>
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">get_string</span>(<span class="ruby-value">2</span>, <span class="ruby-value">1</span>)
+<span class="ruby-comment"># =&gt; &quot;s&quot;</span>
+</pre>
+
+          <div class="method-source-code" id="get_string-source">
+            <pre>static VALUE
+io_buffer_get_string(int argc, VALUE *argv, VALUE self)
+{
+    if (argc &gt; 3) rb_error_arity(argc, 0, 3);
+
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    const void *base;
+    size_t size;
+    io_buffer_get_bytes_for_reading(data, &amp;base, &amp;size);
+
+    size_t offset = 0;
+    size_t length = size;
+    rb_encoding *encoding = rb_ascii8bit_encoding();
+
+    if (argc &gt;= 1) {
+        offset = NUM2SIZET(argv[0]);
+    }
+
+    if (argc &gt;= 2 &amp;&amp; !RB_NIL_P(argv[1])) {
+        length = NUM2SIZET(argv[1]);
+    } else {
+        length = size - offset;
+    }
+
+    if (argc &gt;= 3) {
+        encoding = rb_find_encoding(argv[2]);
+    }
+
+    io_buffer_validate_range(data, offset, length);
+
+    return rb_enc_str_new((const char*)base + offset, length, encoding);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-get_value" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            get_value(type, offset) &rarr; numeric
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Read from buffer a value of <code>type</code> at <code>offset</code>. <code>type</code> should be one of symbols:</p>
+<ul><li>
+<p><code>:U8</code>: unsigned integer, 1 byte</p>
+</li><li>
+<p><code>:S8</code>: signed integer, 1 byte</p>
+</li><li>
+<p><code>:u16</code>: unsigned integer, 2 bytes, little-endian</p>
+</li><li>
+<p><code>:U16</code>: unsigned integer, 2 bytes, big-endian</p>
+</li><li>
+<p><code>:s16</code>: signed integer, 2 bytes, little-endian</p>
+</li><li>
+<p><code>:S16</code>: signed integer, 2 bytes, big-endian</p>
+</li><li>
+<p><code>:u32</code>: unsigned integer, 4 bytes, little-endian</p>
+</li><li>
+<p><code>:U32</code>: unsigned integer, 4 bytes, big-endian</p>
+</li><li>
+<p><code>:s32</code>: signed integer, 4 bytes, little-endian</p>
+</li><li>
+<p><code>:S32</code>: signed integer, 4 bytes, big-endian</p>
+</li><li>
+<p><code>:u64</code>: unsigned integer, 8 bytes, little-endian</p>
+</li><li>
+<p><code>:U64</code>: unsigned integer, 8 bytes, big-endian</p>
+</li><li>
+<p><code>:s64</code>: signed integer, 8 bytes, little-endian</p>
+</li><li>
+<p><code>:S64</code>: signed integer, 8 bytes, big-endian</p>
+</li><li>
+<p><code>:f32</code>: float, 4 bytes, little-endian</p>
+</li><li>
+<p><code>:F32</code>: float, 4 bytes, big-endian</p>
+</li><li>
+<p><code>:f64</code>: double, 8 bytes, little-endian</p>
+</li><li>
+<p><code>:F64</code>: double, 8 bytes, big-endian</p>
+</li></ul>
+
+<p>Example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">string</span> = [<span class="ruby-value">1.5</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-string">&#39;f&#39;</span>)
+<span class="ruby-comment"># =&gt; &quot;\x00\x00\xC0?&quot;</span>
+<span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">for</span>(<span class="ruby-identifier">string</span>).<span class="ruby-identifier">get_value</span>(<span class="ruby-value">:f32</span>, <span class="ruby-value">0</span>)
+<span class="ruby-comment"># =&gt; 1.5</span>
+</pre>
+
+          <div class="method-source-code" id="get_value-source">
+            <pre>static VALUE
+io_buffer_get_value(VALUE self, VALUE type, VALUE _offset)
+{
+    const void *base;
+    size_t size;
+    size_t offset = NUM2SIZET(_offset);
+
+    rb_io_buffer_get_bytes_for_reading(self, &amp;base, &amp;size);
+
+    return rb_io_buffer_get_value(base, size, RB_SYM2ID(type), offset);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-hexdump" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">hexdump</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="hexdump-source">
+            <pre>static VALUE
+rb_io_buffer_hexdump(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    VALUE result = Qnil;
+
+    if (io_buffer_validate(data) &amp;&amp; data-&gt;base) {
+        result = rb_str_buf_new(data-&gt;size*3 + (data-&gt;size/16)*12 + 1);
+
+        io_buffer_hexdump(result, 16, data-&gt;base, data-&gt;size, 1);
+    }
+
+    return result;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-inspect" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="inspect-source">
+            <pre>VALUE
+rb_io_buffer_inspect(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    VALUE result = rb_io_buffer_to_s(self);
+
+    if (io_buffer_validate(data)) {
+        // Limit the maximum size genearted by inspect.
+        if (data-&gt;size &lt;= 256) {
+            io_buffer_hexdump(result, 16, data-&gt;base, data-&gt;size, 0);
+        }
+    }
+
+    return result;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-internal-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            internal? &rarr; true or false
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>If the buffer is <em>internal</em>, meaning it references memory allocated by the buffer itself.</p>
+
+<p>An internal buffer is not associated with any external memory (e.g. string) or file mapping.</p>
+
+<p>Internal buffers are created using <a href="Buffer.html#method-c-new"><code>::new</code></a> and is the default when the requested size is less than the <a href="Buffer.html#PAGE_SIZE"><code>IO::Buffer::PAGE_SIZE</code></a> and it was not requested to be mapped on creation.</p>
+
+<p>Internal buffers can be resized, and such an operation will typically invalidate all slices, but not always.</p>
+
+          <div class="method-source-code" id="internal-3F-source">
+            <pre>static VALUE
+rb_io_buffer_internal_p(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    return RBOOL(data-&gt;flags &amp; RB_IO_BUFFER_INTERNAL);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-locked" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            locked { ... }
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Allows to process a buffer in exclusive way, for concurrency-safety. While the block is performed, the buffer is considered locked, and no other code can enter the lock. Also, locked buffer can’t be changed with <a href="Buffer.html#method-i-resize"><code>resize</code></a> or <a href="Buffer.html#method-i-free"><code>free</code></a>.</p>
+
+<pre>buffer = IO::Buffer.new(4)
+buffer.locked? #=&gt; false
+
+Fiber.schedule do
+  buffer.locked do
+    buffer.write(io) # theoretical system call interface
+  end
+end
+
+Fiber.schedule do
+  # in `locked&#39;: Buffer already locked! (IO::Buffer::LockedError)
+  buffer.locked do
+    buffer.set_string(...)
+  end
+end</pre>
+
+<p>The following operations acquire a lock: <a href="Buffer.html#method-i-resize"><code>resize</code></a>, <a href="Buffer.html#method-i-free"><code>free</code></a>.</p>
+
+<p>Locking is not thread safe. It is designed as a safety net around non-blocking system calls. You can only share a buffer between threads with appropriate synchronisation techniques.</p>
+
+          <div class="method-source-code" id="locked-source">
+            <pre>VALUE
+rb_io_buffer_locked(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    if (data-&gt;flags &amp; RB_IO_BUFFER_LOCKED) {
+        rb_raise(rb_eIOBufferLockedError, &quot;Buffer already locked!&quot;);
+    }
+
+    data-&gt;flags |= RB_IO_BUFFER_LOCKED;
+
+    VALUE result = rb_yield(self);
+
+    data-&gt;flags &amp;= ~RB_IO_BUFFER_LOCKED;
+
+    return result;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-locked-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            locked? &rarr; true or false
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>If the buffer is <em>locked</em>, meaning it is inside <a href="Buffer.html#method-i-locked"><code>locked</code></a> block execution. Locked buffer can’t be resized or freed, and another lock can’t be acquired on it.</p>
+
+<p>Locking is not thread safe, but is a semantic used to ensure buffers don’t move while being used by a system call.</p>
+
+<pre class="ruby"><span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">locked</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">io</span>) <span class="ruby-comment"># theoretical system call interface</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+          <div class="method-source-code" id="locked-3F-source">
+            <pre>static VALUE
+rb_io_buffer_locked_p(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    return RBOOL(data-&gt;flags &amp; RB_IO_BUFFER_LOCKED);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-mapped-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            mapped? &rarr; true or false
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>If the buffer is <em>mapped</em>, meaning it references memory mapped by the buffer.</p>
+
+<p>Mapped buffers are either anonymous, if created by <a href="Buffer.html#method-c-new"><code>::new</code></a> with the <a href="Buffer.html#MAPPED"><code>IO::Buffer::MAPPED</code></a> flag or if the size was at least <a href="Buffer.html#PAGE_SIZE"><code>IO::Buffer::PAGE_SIZE</code></a>, or backed by a file if created with <a href="Buffer.html#method-c-map"><code>::map</code></a>.</p>
+
+<p>Mapped buffers can usually be resized, and such an operation will typically invalidate all slices, but not always.</p>
+
+          <div class="method-source-code" id="mapped-3F-source">
+            <pre>static VALUE
+rb_io_buffer_mapped_p(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    return RBOOL(data-&gt;flags &amp; RB_IO_BUFFER_MAPPED);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-null-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            null? &rarr; true or false
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>If the buffer was freed with <a href="Buffer.html#method-i-free"><code>free</code></a> or was never allocated in the first place.</p>
+
+          <div class="method-source-code" id="null-3F-source">
+            <pre>static VALUE
+rb_io_buffer_null_p(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    return RBOOL(data-&gt;base == NULL);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-pread" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">pread</span><span
+            class="method-args">(p1, p2, p3)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="pread-source">
+            <pre>static VALUE
+io_buffer_pread(VALUE self, VALUE io, VALUE length, VALUE offset)
+{
+    return rb_io_buffer_pread(self, io, RB_NUM2SIZE(length), NUM2OFFT(offset));
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-pwrite" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">pwrite</span><span
+            class="method-args">(p1, p2, p3)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="pwrite-source">
+            <pre>static VALUE
+io_buffer_pwrite(VALUE self, VALUE io, VALUE length, VALUE offset)
+{
+    return rb_io_buffer_pwrite(self, io, RB_NUM2SIZE(length), NUM2OFFT(offset));
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-read" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">read</span><span
+            class="method-args">(p1, p2)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="read-source">
+            <pre>static VALUE
+io_buffer_read(VALUE self, VALUE io, VALUE length)
+{
+    return rb_io_buffer_read(self, io, RB_NUM2SIZE(length));
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-readonly-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">readonly?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="readonly-3F-source">
+            <pre>static VALUE
+io_buffer_readonly_p(VALUE self)
+{
+    return RBOOL(rb_io_buffer_readonly_p(self));
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-resize" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            resize(new_size) &rarr; self
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Resizes a buffer to a <code>new_size</code> bytes, preserving its content. Depending on the old and new size, the memory area associated with the buffer might be either extended, or rellocated at different address with content being copied.</p>
+
+<pre class="ruby"><span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">4</span>)
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">set_string</span>(<span class="ruby-string">&quot;test&quot;</span>, <span class="ruby-value">0</span>)
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">resize</span>(<span class="ruby-value">8</span>) <span class="ruby-comment"># resize to 8 bytes</span>
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x0000555f5d1a1630+8 INTERNAL&gt;</span>
+<span class="ruby-comment"># 0x00000000  74 65 73 74 00 00 00 00                         test....</span>
+</pre>
+
+<p>External buffer (created with <a href="Buffer.html#method-c-for"><code>::for</code></a>), and locked buffer can not be resized.</p>
+
+          <div class="method-source-code" id="resize-source">
+            <pre>static VALUE
+io_buffer_resize(VALUE self, VALUE size)
+{
+    rb_io_buffer_resize(self, NUM2SIZET(size));
+
+    return self;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-set_string" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">set_string</span><span
+            class="method-args">(*args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="set_string-source">
+            <pre>static VALUE
+io_buffer_set_string(int argc, VALUE *argv, VALUE self)
+{
+    if (argc &lt; 1 || argc &gt; 4) rb_error_arity(argc, 1, 4);
+
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    VALUE string = rb_str_to_str(argv[0]);
+
+    const void *source_base = RSTRING_PTR(string);
+    size_t source_size = RSTRING_LEN(string);
+
+    return io_buffer_copy_from(data, source_base, source_size, argc-1, argv+1);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-set_value" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            set_value(type, offset, value) &rarr; offset
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Write to a buffer a <code>value</code> of <code>type</code> at <code>offset</code>. <code>type</code> should be one of symbols described in <a href="Buffer.html#method-i-get_value"><code>get_value</code></a>.</p>
+
+<pre class="ruby"><span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">8</span>)
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x0000555f5c9a2d50+8 INTERNAL&gt;</span>
+<span class="ruby-comment"># 0x00000000  00 00 00 00 00 00 00 00</span>
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">set_value</span>(<span class="ruby-value">:U8</span>, <span class="ruby-value">1</span>, <span class="ruby-value">111</span>)
+<span class="ruby-comment"># =&gt; 1</span>
+<span class="ruby-identifier">buffer</span>
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x0000555f5c9a2d50+8 INTERNAL&gt;</span>
+<span class="ruby-comment"># 0x00000000  00 6f 00 00 00 00 00 00                         .o......</span>
+</pre>
+
+<p>Note that if the <code>type</code> is integer and <code>value</code> is <a href="../Float.html"><code>Float</code></a>, the implicit truncation is performed:</p>
+
+<pre class="ruby"><span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">8</span>)
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">set_value</span>(<span class="ruby-value">:U32</span>, <span class="ruby-value">0</span>, <span class="ruby-value">2.5</span>)
+<span class="ruby-identifier">buffer</span>
+<span class="ruby-comment">#   =&gt;</span>
+<span class="ruby-comment">#  #&lt;IO::Buffer 0x0000555f5c9a2d50+8 INTERNAL&gt;</span>
+<span class="ruby-comment">#  0x00000000  00 00 00 02 00 00 00 00</span>
+<span class="ruby-comment">#                       ^^ the same as if we&#39;d pass just integer 2</span>
+</pre>
+
+          <div class="method-source-code" id="set_value-source">
+            <pre>static VALUE
+io_buffer_set_value(VALUE self, VALUE type, VALUE _offset, VALUE value)
+{
+    void *base;
+    size_t size;
+    size_t offset = NUM2SIZET(_offset);
+
+    rb_io_buffer_get_bytes_for_writing(self, &amp;base, &amp;size);
+
+    rb_io_buffer_set_value(base, size, RB_SYM2ID(type), offset, value);
+
+    return SIZET2NUM(offset);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-size" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            size &rarr; integer
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Returns the size of the buffer that was explicitly set (on creation with <a href="Buffer.html#method-c-new"><code>::new</code></a> or on <a href="Buffer.html#method-i-resize"><code>resize</code></a>), or deduced on buffer’s creation from string or file.</p>
+
+          <div class="method-source-code" id="size-source">
+            <pre>VALUE
+rb_io_buffer_size(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    return SIZET2NUM(data-&gt;size);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-slice" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            slice(offset, length) &rarr; io_buffer
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Produce another <a href="Buffer.html"><code>IO::Buffer</code></a> which is a slice (or view into) the current one starting at <code>offset</code> bytes and going for <code>length</code> bytes.</p>
+
+<p>The slicing happens without copying of memory, and the slice keeps being associated with the original buffer’s source (string, or file), if any.</p>
+
+<p>Raises <a href="../RuntimeError.html"><code>RuntimeError</code></a> if the &lt;tt&gt;offset+length&lt;tt&gt; is out of the current buffer’s bounds.</p>
+
+<pre class="ruby"><span class="ruby-identifier">string</span> = <span class="ruby-string">&#39;test&#39;</span>
+<span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">for</span>(<span class="ruby-identifier">string</span>)
+
+<span class="ruby-identifier">slice</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-value">1</span>, <span class="ruby-value">2</span>)
+<span class="ruby-comment"># =&gt;</span>
+<span class="ruby-comment">#  #&lt;IO::Buffer 0x00007fc3d34ebc49+2 SLICE&gt;</span>
+<span class="ruby-comment">#  0x00000000  65 73                                           es</span>
+
+<span class="ruby-comment"># Put &quot;o&quot; into 0s position of the slice</span>
+<span class="ruby-identifier">slice</span>.<span class="ruby-identifier">set_string</span>(<span class="ruby-string">&#39;o&#39;</span>, <span class="ruby-value">0</span>)
+<span class="ruby-identifier">slice</span>
+<span class="ruby-comment"># =&gt;</span>
+<span class="ruby-comment">#  #&lt;IO::Buffer 0x00007fc3d34ebc49+2 SLICE&gt;</span>
+<span class="ruby-comment">#  0x00000000  6f 73                                           os</span>
+
+<span class="ruby-comment"># it is also visible at position 1 of the original buffer</span>
+<span class="ruby-identifier">buffer</span>
+<span class="ruby-comment"># =&gt;</span>
+<span class="ruby-comment">#  #&lt;IO::Buffer 0x00007fc3d31e2d80+4 SLICE&gt;</span>
+<span class="ruby-comment">#  0x00000000  74 6f 73 74                                     tost</span>
+
+<span class="ruby-comment"># ...and original string</span>
+<span class="ruby-identifier">string</span>
+<span class="ruby-comment"># =&gt; tost</span>
+</pre>
+
+          <div class="method-source-code" id="slice-source">
+            <pre>VALUE
+rb_io_buffer_slice(VALUE self, VALUE _offset, VALUE _length)
+{
+    // TODO fail on negative offets/lengths.
+    size_t offset = NUM2SIZET(_offset);
+    size_t length = NUM2SIZET(_length);
+
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    io_buffer_validate_range(data, offset, length);
+
+    VALUE instance = rb_io_buffer_type_allocate(rb_class_of(self));
+    struct rb_io_buffer *slice = NULL;
+    TypedData_Get_Struct(instance, struct rb_io_buffer, &amp;rb_io_buffer_type, slice);
+
+    slice-&gt;base = (char*)data-&gt;base + offset;
+    slice-&gt;size = length;
+
+    // The source should be the root buffer:
+    if (data-&gt;source != Qnil)
+        slice-&gt;source = data-&gt;source;
+    else
+        slice-&gt;source = self;
+
+    return instance;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-to_s" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            to_s &rarr; string
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Short representation of the buffer. It includes the address, size and symbolic flags. This format is subject to change.</p>
+
+<pre class="ruby"><span class="ruby-identifier">puts</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">4</span>) <span class="ruby-comment"># uses to_s internally</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x000055769f41b1a0+4 INTERNAL&gt;</span>
+</pre>
+
+          <div class="method-source-code" id="to_s-source">
+            <pre>VALUE
+rb_io_buffer_to_s(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    VALUE result = rb_str_new_cstr(&quot;#&lt;&quot;);
+
+    rb_str_append(result, rb_class_name(CLASS_OF(self)));
+    rb_str_catf(result, &quot; %p+%&quot;PRIdSIZE, data-&gt;base, data-&gt;size);
+
+    if (data-&gt;base == NULL) {
+        rb_str_cat2(result, &quot; NULL&quot;);
+    }
+
+    if (data-&gt;flags &amp; RB_IO_BUFFER_EXTERNAL) {
+        rb_str_cat2(result, &quot; EXTERNAL&quot;);
+    }
+
+    if (data-&gt;flags &amp; RB_IO_BUFFER_INTERNAL) {
+        rb_str_cat2(result, &quot; INTERNAL&quot;);
+    }
+
+    if (data-&gt;flags &amp; RB_IO_BUFFER_MAPPED) {
+        rb_str_cat2(result, &quot; MAPPED&quot;);
+    }
+
+    if (data-&gt;flags &amp; RB_IO_BUFFER_LOCKED) {
+        rb_str_cat2(result, &quot; LOCKED&quot;);
+    }
+
+    if (data-&gt;flags &amp; RB_IO_BUFFER_READONLY) {
+        rb_str_cat2(result, &quot; READONLY&quot;);
+    }
+
+    if (data-&gt;source != Qnil) {
+        rb_str_cat2(result, &quot; SLICE&quot;);
+    }
+
+    if (!io_buffer_validate(data)) {
+        rb_str_cat2(result, &quot; INVALID&quot;);
+    }
+
+    return rb_str_cat2(result, &quot;&gt;&quot;);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-transfer" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            transfer &rarr; new_io_buffer
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Transfers ownership to a new buffer, deallocating the current one.</p>
+
+<pre class="ruby"><span class="ruby-identifier">buffer</span> = <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&#39;test&#39;</span>)
+<span class="ruby-identifier">other</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">transfer</span>
+<span class="ruby-identifier">other</span>
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x00007f136a15f7b0+4 SLICE&gt;</span>
+<span class="ruby-comment"># 0x00000000  74 65 73 74                                     test</span>
+<span class="ruby-identifier">buffer</span>
+<span class="ruby-comment">#  =&gt;</span>
+<span class="ruby-comment"># #&lt;IO::Buffer 0x0000000000000000+0 NULL&gt;</span>
+<span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">null?</span>
+<span class="ruby-comment"># =&gt; true</span>
+</pre>
+
+          <div class="method-source-code" id="transfer-source">
+            <pre>VALUE
+rb_io_buffer_transfer(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    if (data-&gt;flags &amp; RB_IO_BUFFER_LOCKED) {
+        rb_raise(rb_eIOBufferLockedError, &quot;Cannot transfer ownership of locked buffer!&quot;);
+    }
+
+    VALUE instance = rb_io_buffer_type_allocate(rb_class_of(self));
+    struct rb_io_buffer *transferred;
+    TypedData_Get_Struct(instance, struct rb_io_buffer, &amp;rb_io_buffer_type, transferred);
+
+    *transferred = *data;
+    io_buffer_zero(data);
+
+    return instance;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-valid-3F" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            valid? &rarr; true or false
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Returns whether the buffer data is accessible.</p>
+
+<p>A buffer becomes invalid if it is a slice of another buffer which has been freed.</p>
+
+          <div class="method-source-code" id="valid-3F-source">
+            <pre>static VALUE
+rb_io_buffer_valid_p(VALUE self)
+{
+    struct rb_io_buffer *data = NULL;
+    TypedData_Get_Struct(self, struct rb_io_buffer, &amp;rb_io_buffer_type, data);
+
+    return RBOOL(io_buffer_validate(data));
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-write" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">write</span><span
+            class="method-args">(p1, p2)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          
+
+          <div class="method-source-code" id="write-source">
+            <pre>static VALUE
+io_buffer_write(VALUE self, VALUE io, VALUE length)
+{
+    return rb_io_buffer_write(self, io, RB_NUM2SIZE(length));
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

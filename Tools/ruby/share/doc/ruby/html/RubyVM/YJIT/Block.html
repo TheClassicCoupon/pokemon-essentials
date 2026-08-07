@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class RubyVM::YJIT::Block - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../../";
+  var index_rel_prefix = "../../";
+</script>
+
+<script src="../../js/navigation.js" defer></script>
+<script src="../../js/search.js" defer></script>
+<script src="../../js/search_index.js" defer></script>
+<script src="../../js/searcher.js" defer></script>
+<script src="../../js/darkfish.js" defer></script>
+
+<link href="../../css/fonts.css" rel="stylesheet">
+<link href="../../css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../../table_of_contents.html#pages">Pages</a>
+    <a href="../../table_of_contents.html#classes">Classes</a>
+    <a href="../../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+<div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  <p class="link"><a href="../../Object.html">Object</a>
+</div>
+
+    
+    
+    
+<!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    <li ><a href="#method-i-address">#address</a>
+    <li ><a href="#method-i-code">#code</a>
+    <li ><a href="#method-i-id">#id</a>
+    <li ><a href="#method-i-iseq_end_index">#iseq_end_index</a>
+    <li ><a href="#method-i-iseq_start_index">#iseq_start_index</a>
+    <li ><a href="#method-i-outgoing_ids">#outgoing_ids</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-RubyVM::YJIT::Block">
+  <h1 id="class-RubyVM::YJIT::Block" class="class">
+    class RubyVM::YJIT::Block
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  <section id="5Buntitled-5D" class="documentation-section">
+
+
+
+
+
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+      <div id="method-i-address" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">address</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Get the address of the code associated with a <a href="Block.html"><code>YJIT::Block</code></a></p>
+
+          <div class="method-source-code" id="address-source">
+            <pre>static VALUE
+block_address(VALUE self)
+{
+    block_t * block;
+    TypedData_Get_Struct(self, block_t, &amp;yjit_block_type, block);
+    return LONG2NUM((intptr_t)block-&gt;start_addr);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-code" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">code</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Get the machine code for <a href="Block.html"><code>YJIT::Block</code></a> as a binary string</p>
+
+          <div class="method-source-code" id="code-source">
+            <pre>static VALUE
+block_code(VALUE self)
+{
+    block_t * block;
+    TypedData_Get_Struct(self, block_t, &amp;yjit_block_type, block);
+
+    return (VALUE)rb_str_new(
+        (const char*)block-&gt;start_addr,
+        block-&gt;end_addr - block-&gt;start_addr
+    );
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-id" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            id &rarr; unique_id
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Returns a unique integer ID for the block.  For example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">blocks</span> = <span class="ruby-identifier">blocks_for</span>(<span class="ruby-identifier">iseq</span>)
+<span class="ruby-identifier">blocks</span>.<span class="ruby-identifier">group_by</span>(<span class="ruby-operator">&amp;</span><span class="ruby-value">:id</span>)
+</pre>
+
+          <div class="method-source-code" id="id-source">
+            <pre>static VALUE
+block_id(VALUE self)
+{
+    block_t * block;
+    TypedData_Get_Struct(self, block_t, &amp;yjit_block_type, block);
+    return PTR2NUM(block);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-iseq_end_index" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">iseq_end_index</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Get the end index in the Instruction Sequence that corresponds to this <a href="Block.html"><code>YJIT::Block</code></a></p>
+
+          <div class="method-source-code" id="iseq_end_index-source">
+            <pre>static VALUE
+iseq_end_index(VALUE self)
+{
+    block_t * block;
+    TypedData_Get_Struct(self, block_t, &amp;yjit_block_type, block);
+
+    return INT2NUM(block-&gt;end_idx);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-iseq_start_index" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-name">iseq_start_index</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Get the start index in the Instruction Sequence that corresponds to this <a href="Block.html"><code>YJIT::Block</code></a></p>
+
+          <div class="method-source-code" id="iseq_start_index-source">
+            <pre>static VALUE
+iseq_start_index(VALUE self)
+{
+    block_t * block;
+    TypedData_Get_Struct(self, block_t, &amp;yjit_block_type, block);
+
+    return INT2NUM(block-&gt;blockid.idx);
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div id="method-i-outgoing_ids" class="method-detail ">
+        <div class="method-heading">
+          <span class="method-callseq">
+            outgoing_ids &rarr; list
+          </span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+
+        <div class="method-description">
+          <p>Returns a list of outgoing ids for the current block.  This list can be used in conjunction with <a href="Block.html#method-i-id"><code>Block#id</code></a> to construct a graph of block objects.</p>
+
+          <div class="method-source-code" id="outgoing_ids-source">
+            <pre>static VALUE
+outgoing_ids(VALUE self)
+{
+    block_t * block;
+    TypedData_Get_Struct(self, block_t, &amp;yjit_block_type, block);
+
+    VALUE ids = rb_ary_new();
+
+    rb_darray_for(block-&gt;outgoing, branch_idx) {
+        branch_t *out_branch = rb_darray_get(block-&gt;outgoing, branch_idx);
+
+        for (size_t succ_idx = 0; succ_idx &lt; 2; succ_idx++) {
+            block_t *succ = out_branch-&gt;blocks[succ_idx];
+
+            if (succ == NULL)
+                continue;
+
+            rb_ary_push(ids, PTR2NUM(succ));
+        }
+
+    }
+
+    return ids;
+}</pre>
+          </div>
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

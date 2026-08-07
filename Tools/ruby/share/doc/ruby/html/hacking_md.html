@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>hacking - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/navigation.js" defer></script>
+<script src="./js/search.js" defer></script>
+<script src="./js/search_index.js" defer></script>
+<script src="./js/searcher.js" defer></script>
+<script src="./js/darkfish.js" defer></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-Ruby+Hacking+Guide">Ruby Hacking Guide</a>
+    <li><a href="#label-Setup">Setup</a>
+    <li><a href="#label-Make">Make</a>
+    <li><a href="#label-Configure+Ruby">Configure Ruby</a>
+    <li><a href="#label-Without+Documentation">Without Documentation</a>
+    <li><a href="#label-Running+Ruby">Running Ruby</a>
+    <li><a href="#label-Run+Local+Test+Script">Run Local Test Script</a>
+    <li><a href="#label-Run+Bootstrap+Tests">Run Bootstrap Tests</a>
+    <li><a href="#label-Run+Extensive+Tests">Run Extensive Tests</a>
+    <li><a href="#label-Run+RubySpec+Tests">Run RubySpec Tests</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    
+<div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+    <li><a href="./CONTRIBUTING_md.html">CONTRIBUTING</a>
+    <li><a href="./COPYING.html">COPYING</a>
+    <li><a href="./COPYING_ja.html">COPYING.ja</a>
+    <li><a href="./LEGAL.html">LEGAL</a>
+    <li><a href="./NEWS-1_8_7.html">NEWS-1.8.7</a>
+    <li><a href="./NEWS-1_9_1.html">NEWS-1.9.1</a>
+    <li><a href="./NEWS-1_9_2.html">NEWS-1.9.2</a>
+    <li><a href="./NEWS-1_9_3.html">NEWS-1.9.3</a>
+    <li><a href="./NEWS-2_0_0.html">NEWS-2.0.0</a>
+    <li><a href="./NEWS-2_1_0.html">NEWS-2.1.0</a>
+    <li><a href="./NEWS-2_2_0.html">NEWS-2.2.0</a>
+    <li><a href="./NEWS-2_3_0.html">NEWS-2.3.0</a>
+    <li><a href="./NEWS-2_4_0.html">NEWS-2.4.0</a>
+    <li><a href="./NEWS-2_5_0.html">NEWS-2.5.0</a>
+    <li><a href="./NEWS-2_6_0.html">NEWS-2.6.0</a>
+    <li><a href="./NEWS-2_7_0.html">NEWS-2.7.0</a>
+    <li><a href="./NEWS-3_0_0_md.html">NEWS-3.0.0</a>
+    <li><a href="./NEWS_md.html">NEWS</a>
+    <li><a href="./README_ja_md.html">README.ja</a>
+    <li><a href="./README_md.html">README</a>
+    <li><a href="./bsearch_rdoc.html">bsearch</a>
+    <li><a href="./bug_triaging_rdoc.html">bug_triaging</a>
+    <li><a href="./case_mapping_rdoc.html">case_mapping</a>
+    <li><a href="./contributing_rdoc.html">contributing</a>
+    <li><a href="./dig_methods_rdoc.html">dig_methods</a>
+    <li><a href="./documentation_guide_rdoc.html">documentation_guide</a>
+    <li><a href="./dtrace_probes_rdoc.html">dtrace_probes</a>
+    <li><a href="./extension_ja_rdoc.html">extension.ja</a>
+    <li><a href="./extension_rdoc.html">extension</a>
+    <li><a href="./fiber_md.html">fiber</a>
+    <li><a href="./globals_rdoc.html">globals</a>
+    <li><a href="./hacking_md.html">hacking</a>
+    <li><a href="./implicit_conversion_rdoc.html">implicit_conversion</a>
+    <li><a href="./keywords_rdoc.html">keywords</a>
+    <li><a href="./maintainers_rdoc.html">maintainers</a>
+    <li><a href="./make_cheatsheet_md.html">make_cheatsheet</a>
+    <li><a href="./marshal_rdoc.html">marshal</a>
+    <li><a href="./memory_view_md.html">memory_view</a>
+    <li><a href="./ractor_md.html">ractor</a>
+    <li><a href="./regexp_rdoc.html">regexp</a>
+    <li><a href="./security_rdoc.html">security</a>
+    <li><a href="./signals_rdoc.html">signals</a>
+    <li><a href="./standard_library_rdoc.html">standard_library</a>
+    <li><a href="./syntax_rdoc.html">syntax</a>
+    <li><a href="./syntax/assignment_rdoc.html">assignment</a>
+    <li><a href="./syntax/calling_methods_rdoc.html">calling_methods</a>
+    <li><a href="./syntax/comments_rdoc.html">comments</a>
+    <li><a href="./syntax/control_expressions_rdoc.html">control_expressions</a>
+    <li><a href="./syntax/exceptions_rdoc.html">exceptions</a>
+    <li><a href="./syntax/literals_rdoc.html">literals</a>
+    <li><a href="./syntax/methods_rdoc.html">methods</a>
+    <li><a href="./syntax/miscellaneous_rdoc.html">miscellaneous</a>
+    <li><a href="./syntax/modules_and_classes_rdoc.html">modules_and_classes</a>
+    <li><a href="./syntax/pattern_matching_rdoc.html">pattern_matching</a>
+    <li><a href="./syntax/precedence_rdoc.html">precedence</a>
+    <li><a href="./syntax/refinements_rdoc.html">refinements</a>
+    <li><a href="./win32/README_win32.html">README.win32</a>
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page hacking.md">
+
+<h1 id="label-Ruby+Hacking+Guide">Ruby Hacking Guide<span><a href="#label-Ruby+Hacking+Guide">&para;</a> <a href="#top">&uarr;</a></span></h1>
+
+<p>This document gives some helpful instructions which should make your experience as a Ruby core developer easier.</p>
+
+<h2 id="label-Setup">Setup<span><a href="#label-Setup">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="label-Make">Make<span><a href="#label-Make">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>It’s common to want to compile things as quickly as possible. Ensuring <code>make</code> has the right <code>--jobs</code> flag will ensure all processors are utilized when building software projects. To do this effectively, you can set <code>MAKEFLAGS</code> in your shell configuration/profile:</p>
+
+<pre># On macOS with Fish shell:
+export MAKEFLAGS=&quot;--jobs &quot;(sysctl -n hw.ncpu)
+
+# On macOS with Bash/ZSH shell:
+export MAKEFLAGS=&quot;--jobs $(sysctl -n hw.ncpu)&quot;
+
+# On Linux with Fish shell:
+export MAKEFLAGS=&quot;--jobs &quot;(nproc)
+
+# On Linux with Bash/ZSH shell:
+export MAKEFLAGS=&quot;--jobs $(nproc)&quot;</pre>
+
+<h2 id="label-Configure+Ruby">Configure Ruby<span><a href="#label-Configure+Ruby">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>It’s generally advisable to use a build directory.</p>
+
+<pre>./autogen.sh
+mkdir build
+cd build
+../configure --prefix $HOME/.rubies/ruby-head
+make install</pre>
+
+<h3 id="label-Without+Documentation">Without Documentation<span><a href="#label-Without+Documentation">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>If you are frequently building Ruby, this will reduce the time it takes to <code>make install</code>.</p>
+
+<pre>../configure --disable-install-doc</pre>
+
+<h2 id="label-Running+Ruby">Running Ruby<span><a href="#label-Running+Ruby">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<h3 id="label-Run+Local+Test+Script">Run Local Test Script<span><a href="#label-Run+Local+Test+Script">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>You can create a file in the Ruby source root called <code>test.rb</code>. You can build <code>miniruby</code> and execute this script:</p>
+
+<pre class="ruby"><span class="ruby-identifier">make</span> <span class="ruby-identifier">run</span>
+</pre>
+
+<p>If you want more of the standard library, you can use <code>runruby</code> instead of <code>run</code>.</p>
+
+<h3 id="label-Run+Bootstrap+Tests">Run Bootstrap Tests<span><a href="#label-Run+Bootstrap+Tests">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>There are a set of tests in <code>bootstraptest/</code> which cover most basic features of the core Ruby language.</p>
+
+<pre class="ruby"><span class="ruby-identifier">make</span> <span class="ruby-identifier">test</span>
+</pre>
+
+<h3 id="label-Run+Extensive+Tests">Run Extensive Tests<span><a href="#label-Run+Extensive+Tests">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>There are extensive tests in <code>test/</code> which cover a wide range of features of the Ruby core language.</p>
+
+<pre class="ruby"><span class="ruby-identifier">make</span> <span class="ruby-identifier">test</span><span class="ruby-operator">-</span><span class="ruby-identifier">all</span>
+</pre>
+
+<p>You can run specific tests by specifying their path:</p>
+
+<pre>make test-all TESTS=../test/fiber/test_io.rb</pre>
+
+<h3 id="label-Run+RubySpec+Tests">Run RubySpec Tests<span><a href="#label-Run+RubySpec+Tests">&para;</a> <a href="#top">&uarr;</a></span></h3>
+
+<p>RubySpec is a project to write a complete, executable specification for the Ruby programming language.</p>
+
+<pre>make test-all test-rubyspec</pre>
+
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.4.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

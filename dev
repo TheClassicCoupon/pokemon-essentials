@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+RUBY_HOME="$ROOT/tools/ruby"
+RUBY="$RUBY_HOME/bin/ruby.exe"
+BUNDLE="$RUBY_HOME/bin/bundle"
+
+if [[ ! -x "$RUBY" ]]; then
+    echo "Ruby runtime not found: $RUBY" >&2
+    exit 1
+fi
+
+export PATH="$RUBY_HOME/bin:$PATH"
+
+COMMAND="${1:-}"
+[[ $# -gt 0 ]] && shift
+
+case "$COMMAND" in
+    ruby)
+        exec "$RUBY" "$@"
+        ;;
+
+    bundle)
+        exec "$RUBY" "$BUNDLE" "$@"
+        ;;
+
+    test)
+        exec "$RUBY" "$BUNDLE" exec rspec "$@"
+        ;;
+
+    setup)
+        exec "$RUBY" "$BUNDLE" install "$@"
+        ;;
+
+    *)
+        cat <<'EOF'
+Usage: ./dev <command> [args]
+
+Commands:
+  ruby     Run the repository Ruby runtime
+  bundle   Run Bundler
+  setup    Install repository Ruby dependencies
+  test     Run the RSpec test suite
+
+Examples:
+  ./dev ruby -v
+  ./dev setup
+  ./dev test
+  ./dev test spec/some_spec.rb
+EOF
+        exit 2
+        ;;
+esac
